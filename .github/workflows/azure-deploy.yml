@@ -1,0 +1,36 @@
+name: Deploy Node.js App to Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install --production
+
+      - name: Create deployment zip
+        run: zip -r app.zip . --exclude "*.git*"
+
+      - name: Deploy to Azure via Kudu ZIP API
+        run: |
+          curl -X POST \
+            --user "${{ secrets.AZURE_DEPLOY_USER }}:${{ secrets.AZURE_DEPLOY_PASS }}" \
+            "https://sho320-express-cicd.scm.azurewebsites.net/api/zipdeploy" \
+            --data-binary @app.zip \
+            -H "Content-Type: application/octet-stream" \
+            --fail \
+            -s -o /dev/null -w "HTTP Status: %{http_code}\n"
