@@ -5,7 +5,6 @@ block content
     header.site-header
       .header-inner
         .logo
-          span.logo-icon 📈
           span.logo-text StockVision
         .header-right
           .market-status
@@ -54,21 +53,6 @@ block content
             h2.card-title ウォッチリスト
           #watchlist-items
 
-      .bottom-row
-        .portfolio-card
-          .card-header
-            h2.card-title ポートフォリオ構成
-          .donut-wrap
-            canvas#donutChart(width="180" height="180")
-            .donut-center
-              .dl ポートフォリオ
-              .dv ¥3.84M
-          #portfolio-legend
 
-        .news-card
-          .card-header
-            h2.card-title マーケットニュース
-            span.live-badge LIVE
-          #news-list
 
   script(src="/javascripts/dashboard.js")
