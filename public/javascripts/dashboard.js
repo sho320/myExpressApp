@@ -238,8 +238,8 @@ function buildEditModal() {
     <div class="modal-backdrop" onclick="closeEditModal()"></div>
     <div class="modal-box">
       <div class="modal-header">
-        <span class="modal-title">📝 保有株の編集</span>
-        <button class="modal-close" onclick="closeEditModal()">✕</button>
+        <span class="modal-title">保有株の編集</span>
+        <button class="modal-close" onclick="closeEditModal()">×</button>
       </div>
       <div class="modal-body">
         <table class="edit-table">
@@ -255,13 +255,13 @@ function buildEditModal() {
           <tbody id="edit-tbody">
           </tbody>
         </table>
-        <button class="btn-add-row" onclick="addEditRow()">＋ 銘柄を追加</button>
+        <button class="btn-add-row" onclick="addEditRow()">+ 銘柄を追加</button>
       </div>
       <div class="modal-footer">
         <button class="btn-reset" onclick="resetStocks()">リセット</button>
         <div>
           <button class="btn-cancel" onclick="closeEditModal()">キャンセル</button>
-          <button class="btn-save" onclick="saveStocks()">💾 保存</button>
+          <button class="btn-save" onclick="saveStocks()">保存</button>
         </div>
       </div>
     </div>
@@ -278,7 +278,7 @@ function renderEditRows() {
       <td><input class="edit-input" value="${s.name}" id="en-${i}" placeholder="銘柄名"></td>
       <td><input class="edit-input num" value="${s.price}" id="ep-${i}" type="number" min="0"></td>
       <td><input class="edit-input num" value="${s.change}" id="ech-${i}" type="number" step="0.01"></td>
-      <td><button class="btn-del" onclick="deleteRow(${i})">🗑</button></td>
+      <td><button class="btn-del" onclick="deleteRow(${i})">削除</button></td>
     </tr>
   `).join('');
 }
@@ -441,7 +441,7 @@ function addEditButton() {
   if (header) {
     const btn = document.createElement('button');
     btn.className = 'edit-btn';
-    btn.textContent = '✏️ 編集';
+    btn.textContent = '編集';
     btn.onclick = openEditModal;
     header.appendChild(btn);
     return;
@@ -452,7 +452,7 @@ function addEditButton() {
     const btn = document.createElement('button');
     btn.className = 'edit-btn';
     btn.style.cssText = 'display:block;width:100%;margin-bottom:8px;background:rgba(59,130,246,0.1);border:1px dashed rgba(59,130,246,0.4);color:#3b82f6;border-radius:8px;padding:8px;cursor:pointer;font-size:.85rem;';
-    btn.textContent = '✏️ 保有株を編集する';
+    btn.textContent = '保有株を編集';
     btn.onclick = openEditModal;
     watchlistEl.parentNode.insertBefore(btn, watchlistEl);
   }
